@@ -1,0 +1,9 @@
+*.meta
+*.sln
+*.csproj
+*.asset
+ProjectSettings/
+Library/
+Build/
+*.prefab
+*.unity
