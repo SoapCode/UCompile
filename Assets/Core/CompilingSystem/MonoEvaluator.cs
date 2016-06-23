@@ -1,4 +1,4 @@
-﻿//#region License...
+﻿#region License...
 
 ////-----------------------------------------------------------------------------
 //// Date:	24/01/13	Time: 9:00
@@ -30,7 +30,7 @@
 //// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ////----------------------------------------------
 
-//#endregion Licence...
+#endregion Licence...
 
 using Mono.CSharp;
 using System;
