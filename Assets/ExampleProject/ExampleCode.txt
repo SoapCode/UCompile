@@ -1,0 +1,132 @@
+Example code
+
+------------------------------------------------
+
+------------------------------------------------
+
+Create cube
+
+Code window code:
+
+Cube cube = new Cube();
+
+------------------------------------------------
+
+------------------------------------------------
+
+Create cube with plain class
+
+Type window code:
+
+public class CubeCreator
+{
+    public void CreateCube()
+    {
+        Cube cube = new Cube();
+    }
+}
+
+Code window code:
+
+CubeCreator creator = new CubeCreator(); creator.CreateCube();
+
+------------------------------------------------
+
+------------------------------------------------
+
+Change cube color on space press with MonoBehaviour
+
+Type window code:
+
+public class ColourChanger : MonoBehaviour
+{
+    void Update()
+    {
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Space))
+        {
+            this.gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
+        }
+    }
+}
+
+Code window code:
+
+Cube cube = new Cube(); cube._cube.AddComponent<ColourChanger>();
+
+------------------------------------------------
+
+------------------------------------------------
+Control cube movement with arrow keys
+
+Type window code:
+
+public class MoverController : UnityEngine.MonoBehaviour
+{
+    void Update()
+    {
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.UpArrow))
+        {
+            Mover.MoveItUp(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+        }
+        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.UpArrow))
+        {
+            Mover.StopAllMovement();
+        }
+
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.DownArrow))
+        {
+            Mover.MoveItDown(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+        }
+        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.DownArrow))
+        {
+            Mover.StopAllMovement();
+        }
+
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.LeftArrow))
+        {
+            Mover.MoveItLeft(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+        }
+        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.LeftArrow))
+        {
+            Mover.StopAllMovement();
+        }
+
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.RightArrow))
+        {
+            Mover.MoveItRight(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+        }
+        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.RightArrow))
+        {
+            Mover.StopAllMovement();
+        }
+    }
+}
+
+Code window code:
+
+Cube cube = new Cube(); cube._cube.AddComponent<MoverController>();
+
+------------------------------------------------
+
+------------------------------------------------
+
+Create bubble sort animation
+
+Bubble sort code, be sure to toggle Animation on, before entering this
+
+Code window code:
+
+Column[] clmnArray = Utility.GenerateColumnArray(5,4,3,2,1);
+
+for (int i = 0; i<clmnArray.Length - 1; i++)
+{
+    for (int j = 0; j<clmnArray.Length - i - 1; j++)
+    {
+        if (clmnArray[j] > clmnArray[j + 1])
+        {
+            yield return Utility.PrettySwap(ref clmnArray[j],ref clmnArray[j + 1]);
+        }
+    }
+}
+
+------------------------------------------------
