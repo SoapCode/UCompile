@@ -1,7 +1,7 @@
 *.sln
 *.csproj
-Library/
-Build/
+/Library
+/Build
 /obj
 /Temp
 
@@ -10,3 +10,5 @@ Build/
 *.pidb
 
 *.userprefs
+
+!/Assets/Core/Plugins/mcs.dll
