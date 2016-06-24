@@ -7,4 +7,6 @@ UCompile is a system for compiling and executing strings with C# code inside Uni
 Tested in Unity3D on:
 * Windows 8,8.1,10.
 * 
-For general troubleshooting / support, please use the zenject subreddit or the zenject google group. If you have found a bug, you are also welcome to create an issue on the github page, or a pull request if you have a fix / extension. You can also follow @Zenject on twitter for updates. Finally, you can also email me directly at sfvermeulen@gmail.com
+For general troubleshooting / support, please use the zenject subreddit or the zenject google group. If you have found a bug, you are also welcome to create an issue on the github page, or a pull request if you have a fix / extension. You can also follow  on twitter for updates. Finally, you can also email me directly at 
+
+work in progress on readme
