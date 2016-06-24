@@ -1,9 +1,12 @@
-*.meta
 *.sln
 *.csproj
-*.asset
-ProjectSettings/
 Library/
 Build/
-*.prefab
-*.unity
+/obj
+/Temp
+
+#ignoring pidb, they are just code completion caching data according to:
+# http://stackoverflow.com/questions/1022111/what-are-monodevelops-pidb-files
+*.pidb
+
+*.userprefs
