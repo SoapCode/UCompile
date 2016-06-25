@@ -38,7 +38,32 @@ There are 2 ways of how UCompile allows you to interact with these assemblies:
 
 It's going to make sense soon, I promise! Let's look at some examples:
 
+1. Here let's create an empty scene, and add an empty GameObject to it with following script attached.
 
+```csharp
+using UnityEngine;
+using UCompile;
 
+public class NewBehaviourScript : MonoBehaviour {
+
+	// Update is called once per frame
+	void Update ()
+    {
+	
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = new CSScriptEngine();
+
+            engine.AddUsings("using UnityEngine;");
+
+            IScript result = engine.CompileCode("GameObject.CreatePrimitive(PrimitiveType.Cube);");
+            result.Execute();
+        }
+
+	}
+}
+```
+
+On Space press, we will create a new instance of the main class you need to worry about in UCompile, CSScriptEngine, then, via AddUsings method, we'll expose UnityEngine namespace functionality to the code, that is to be compiled by CSScriptEngine. So
 
 work in progress on readme
