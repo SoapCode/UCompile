@@ -90,7 +90,7 @@ public class ColourChanger : MonoBehaviour
 }
 ```
 
-Of course we can write changing color MonoBehaviour and compile it with the rest of scripts on compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using method described above. Code of MonoBehaviour doing that would look like that:
+Of course we can write changing color MonoBehaviour and compile it with the rest of scripts at compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using CompileCode method as we described above. Code of MonoBehaviour doing that would look like that:
 
 ```csharp
 using UnityEngine;
@@ -109,10 +109,44 @@ public class CompileClassExample : MonoBehaviour
 
             engine.AddUsings("using UnityEngine;");
 
-            IScript result = engine.CompileCode("GameObject.CreatePrimitive(PrimitiveType.Cube);");
+            IScript result = engine.CompileCode("
+            					   GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            					   cube.AddComponent<ColourChanger>();
+            					");
             result.Execute();
         }
 
      }
 }
 ```
+
+But what if we want to create this ColorChanger MonoBehaviour dynamically at runtime? With some slight modifications of the code above, we can do that!
+
+```csharp
+using UnityEngine;
+using UCompile;
+
+public class CompileClassExample : MonoBehaviour 
+{
+
+    // Update is called once per frame
+    void Update ()
+    {
+	
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = new CSScriptEngine();
+
+            engine.AddUsings("using UnityEngine;");
+
+            IScript result = engine.CompileCode("
+            					   GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            					   cube.AddComponent<ColourChanger>();
+            					");
+            result.Execute();
+        }
+
+     }
+}
+```
+
