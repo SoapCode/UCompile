@@ -165,4 +165,4 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 }
 ```
-
+Here we save our ColorChanger MonoBehaviour code in typeCode variable, then we pass it to CompileType method, with "ColorChanger" as type ID. 
