@@ -46,11 +46,11 @@ Here let's create an empty scene, and add an empty GameObject to it with followi
 using UnityEngine;
 using UCompile;
 
-public class NewBehaviourScript : MonoBehaviour 
+public class CompileCodeExample : MonoBehaviour 
 {
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
 	
         if(Input.GetKeyDown(KeyCode.Space))
@@ -75,4 +75,44 @@ This way you can interact with your Unity scene via code while it's running. If 
 
 **2. Class compilation.**
 
-What if we want not only to create cube in our scene, but also
+What if we want not only to create cube in our scene, but also make it change color on button press? So lets say code of this changing color MonoBehaviour goes like this:
+
+```csharp
+public class ColourChanger : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
+        }
+    }
+}
+```
+
+Of course we can write changing color MonoBehaviour and compile it with the rest of scripts on compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using method described above. Code of MonoBehaviour doing that would look like that:
+
+```csharp
+using UnityEngine;
+using UCompile;
+
+public class CompileClassExample : MonoBehaviour 
+{
+
+    // Update is called once per frame
+    void Update ()
+    {
+	
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = new CSScriptEngine();
+
+            engine.AddUsings("using UnityEngine;");
+
+            IScript result = engine.CompileCode("GameObject.CreatePrimitive(PrimitiveType.Cube);");
+            result.Execute();
+        }
+
+     }
+}
+```
