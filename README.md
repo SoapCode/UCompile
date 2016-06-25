@@ -34,7 +34,7 @@ Now this code is officially a part of your application, as long as AppDomain it 
 There are 2 ways of how UCompile allows you to interact with these assemblies:
 
 1. Compiling classes. You can compile your custom classes, and make them a part of your Unity application. These classes will be able to use any functionality you've decided to expose to it, from assemblies, which are loaded right now in main Unity AppDomain, including assemblies with classes which you dynamically compiled with UCompile earlier.
-2. Compiling and executing methodless code. You can compile plain methodless code, using the same exposure restriction system. Imagine that you put your code in some kind of a Main() method, that you can execute at any moment, and this code can use classes that you have already dynamically compiled with the first way.
+2. Compiling and executing methodless code. You can compile plain methodless code, using the same exposure restriction system. Imagine that you put your code in some kind of a "Main()" method, that you can execute at any moment, and this code can use classes, that you have already dynamically compiled with the first way.
 
 It's going to make sense soon, I promise! Let's look at some examples:
 
@@ -44,7 +44,8 @@ It's going to make sense soon, I promise! Let's look at some examples:
 using UnityEngine;
 using UCompile;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class NewBehaviourScript : MonoBehaviour 
+{
 
 	// Update is called once per frame
 	void Update ()
@@ -60,10 +61,12 @@ public class NewBehaviourScript : MonoBehaviour {
             result.Execute();
         }
 
-	}
+     }
 }
 ```
 
-On Space press, we will create a new instance of the main class you need to worry about in UCompile, CSScriptEngine, then, via AddUsings method, we'll expose UnityEngine namespace functionality to the code, that is to be compiled by CSScriptEngine. So
+On Space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we sort of add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface, and instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.
+
+So basically what happens here - your code gets wrapped in a method and a class, then this class is compiled and instance of this placeholder class is returned by CompileCode as interface object. Then method containing our code, called Execute, is invoked, and thats how our code gets executed. Try it, and you'll see a cube appear! 
 
 work in progress on readme
