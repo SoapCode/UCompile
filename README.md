@@ -38,7 +38,9 @@ There are 2 ways of how UCompile allows you to interact with these assemblies:
 
 It's going to make sense soon, I promise! Let's look at some examples:
 
-1. Here let's create an empty scene, and add an empty GameObject to it with following script attached.
+**1. Methodless code compilation and execution.**
+
+Here let's create an empty scene, and add an empty GameObject to it with following script attached.
 
 ```csharp
 using UnityEngine;
@@ -65,8 +67,12 @@ public class NewBehaviourScript : MonoBehaviour
 }
 ```
 
-On Space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we sort of add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface, and instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.
+On space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we sort of add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface. After compilation, instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.
 
 So basically what happens here - your code gets wrapped in a method and a class, then this class is compiled and instance of this placeholder class is returned by CompileCode as interface object. Then method containing our code, called Execute, is invoked, and thats how our code gets executed. Try it, and you'll see a cube appear! 
 
-work in progress on readme
+This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, thats could be all you need from UCompile. But we can do more.
+
+**2. Class compilation.**
+
+What if we want not only to create cube in our scene, but also
