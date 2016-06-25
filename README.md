@@ -14,8 +14,8 @@ If you have found a bug, create an issue on the github page, or a pull request i
 ##Main Features
 * Compilation and execution of classless and methodless C# code
 * C# classes compilation
-* Control on namespaces exposed to the code
-* C# code compilation and execution in separate AppDomain
+* Control on namespaces exposed to the code to restrict its access of resources
+* C# code compilation and execution in separate AppDomain to control memory consumption
 * Coroutine compilation and execution
 * Works in build as well as in editor
 * Example project with console-like GUI interface to test it all out
@@ -25,6 +25,19 @@ If you have found a bug, create an issue on the github page, or a pull request i
 You can simply download/clone this repo and copy UCompile folder to your Unity3D project.
 
 ##How it works?
+The main principle behind the scenes is simple: take string with C# code, compile it and produce Assembly representing this code, load it into current AppDomain. 
+
+<img src="DocumentationMisc/CompilationScheme.png?raw=true" alt="compilation scheme" width="940px" height="454px"/>
+
+Now this code is officially a part of your application, as long as AppDomain it is loaded into stays loaded. 
+
+There are 2 ways of how UCompile allows you to interact with these assemblies:
+
+1. Compiling classes. You can compile your custom classes, and make them a part of your Unity application. These classes will be able to use any functionality you've decided to expose to it, from assemblies, which are loaded right now in main Unity AppDomain, including assemblies with classes which you dynamically compiled with UCompile earlier.
+2. Compiling and executing methodless code. You can compile plain methodless code, using the same exposure restriction system. Imagine that you put your code in some kind of a Main() method, that you can execute at any moment, and this code can use classes that you have already dynamically compiled with the first way.
+
+It's going to make sense soon, I promise! Let's look at some examples:
+
 
 
 
