@@ -82,7 +82,7 @@ public class ColourChanger : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             this.gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
         }
@@ -109,7 +109,7 @@ public class CompileClassExample : MonoBehaviour
 
             engine.AddUsings("using UnityEngine;");
 
-            IScript result = engine.CompileCode("
+            IScript result = engine.CompileCode(@"
             					   GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             					   cube.AddComponent<ColourChanger>();
             					");
@@ -120,14 +120,13 @@ public class CompileClassExample : MonoBehaviour
 }
 ```
 
-But what if we want to create this ColorChanger MonoBehaviour dynamically at runtime? With some slight modifications of the code above, we can do that!
+But what if we want to create this ColorChanger MonoBehaviour dynamically at runtime? With some slight modifications of above code, we can do that!
 
 ```csharp
 using UnityEngine;
 using UCompile;
 
-public class CompileClassExample : MonoBehaviour 
-{
+public class NewBehaviourScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update ()
@@ -139,14 +138,31 @@ public class CompileClassExample : MonoBehaviour
 
             engine.AddUsings("using UnityEngine;");
 
-            IScript result = engine.CompileCode("
-            					   GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            					   cube.AddComponent<ColourChanger>();
-            					");
+            string typeCode = @"
+                
+                                public class ColourChanger : MonoBehaviour
+                                {
+                                    void Update()
+                                    {
+                                        if (Input.GetKeyDown(KeyCode.C))
+                                        {
+                                            this.gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
+                                        }
+                                    }
+                                }
+
+                              ";
+
+            engine.CompileType("ColorChanger", typeCode);
+
+            IScript result = engine.CompileCode(@"
+                                                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                                 cube.AddComponent<ColourChanger>();
+                                               ");
             result.Execute();
         }
 
-     }
+	}
 }
 ```
 
