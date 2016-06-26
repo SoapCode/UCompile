@@ -165,4 +165,8 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 }
 ```
-Here we save our ColorChanger MonoBehaviour code in typeCode variable, then we pass it to CompileType method, with "ColorChanger" as type ID. 
+Here we save our ColorChanger MonoBehaviour code in typeCode variable, then we pass it to CompileType(string typeID, string code) method, with "ColorChanger" as typeID. CompileType method associates "ColorChanger" string ID with typeCode, so whenever you want to change it, you need to call CompileType with the same ID you initially compiled it and your new typeCode. So every type you compile should have its unique ID, otherwise it will be treated as already existing type, and calling CompileType with typeID of this type will result into its typeCode changed to the one you passed. 
+
+So this CompileType call sort of adds this type to the system, and from now on, code passed to CompilCode or CompileType methods will have access to this type and can perform operations on it. You can see, that now, after we compiled this type and "added it to the system", using our old friend CompileCode method we can do whatever we want with it, for example attaching it to our cube GameObject! Try it, and you'll have a cube in your scene changing color every time you press C.
+
+Be aware, that every time you change typeCode of already existing type, previous version of this type will be discarded, and only the last compiled version will be available to use for the code passed to CompileCode and CompileType methods. 
