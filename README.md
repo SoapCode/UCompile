@@ -175,6 +175,8 @@ Be aware, that every time you change typeCode of already existing type, previous
 
 ##UCompile structure
 
+<img src="DocumentationMisc/UcompileStructureScheme.png?raw=true" alt="ucompile structure scheme" width="1035px" height="240px"/>
+
 Here I'll give you a brief overview of the system structure, for more details you can dig into the code, there's not much and it's all heavily commented.
 
 3 main building blocks of UCompile are: MonoEvaluator.cs, CSScriptEngine.cs and CSScriptengineRemote.cs.
