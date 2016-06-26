@@ -42,7 +42,7 @@ public class ColourChanger : MonoBehaviour
 {
     void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             this.gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
         }

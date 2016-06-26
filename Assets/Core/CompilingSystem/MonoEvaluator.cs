@@ -134,7 +134,7 @@ namespace UCompile
     //TODO: Add async compilation capabilities.
     /// <summary>
     /// Wrapper class for Mono.Csharp.Evaluator
-    /// compiles code on runtime and loads in-memory assemblies
+    /// compiles code at runtime and loads in-memory assemblies
     /// into current app domain.
     /// </summary>
     public class MonoEvaluator : ICompilationSystem
