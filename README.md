@@ -71,7 +71,7 @@ On space press, we create new instance of the main class you need to worry about
 
 So basically what happens here - your code gets wrapped in a method and a class, then this class is compiled and instance of this placeholder class is returned by CompileCode as interface object. Then method containing our code, called Execute, is invoked, and thats how our code gets executed. Try it, and you'll see a cube appear! 
 
-This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, thats could be all you need from UCompile. But we can do more.
+This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, that's could be all you need from UCompile. But we can do more.
 
 **2. Class compilation.**
 
@@ -90,7 +90,7 @@ public class ColourChanger : MonoBehaviour
 }
 ```
 
-Of course we can write changing color MonoBehaviour and compile it with the rest of scripts at compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using CompileCode method as we described above. Code of MonoBehaviour doing that would look like that:
+Of course we can write changing color MonoBehaviour and compile it with the rest of scripts at compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using CompileCode method as we described above. Code of MonoBehaviour doing that would look like this:
 
 ```csharp
 using UnityEngine;
@@ -169,4 +169,7 @@ Here we save our ColorChanger MonoBehaviour code in typeCode variable, then we p
 
 So this CompileType call sort of adds this type to the system, and from now on, code passed to CompilCode or CompileType methods will have access to this type and can perform operations on it. You can see, that now, after we compiled this type and "added it to the system", using our old friend CompileCode method we can do whatever we want with it, for example attaching it to our cube GameObject! Try it, and you'll have a cube in your scene changing color every time you press C.
 
-Be aware, that every time you change typeCode of already existing type, previous version of this type will be discarded, and only the last compiled version will be available to use for the code passed to CompileCode and CompileType methods. 
+Be aware, that every time you change typeCode of already existing type, previous version of this type is discarded, and only the last compiled version will be available to use for the code passed to CompileCode and CompileType methods. 
+
+**Summing it up in few words:** you can compile methodless code with CompileCode method, and compile classes with CompileType method. You can control what this code can access by adding using derictives via AddUsings method. All classes you compiled with CompileType will be accessible constantly.
+
