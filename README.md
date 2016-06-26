@@ -7,9 +7,9 @@ UCompile is a system for compiling and executing strings with C# code inside Uni
 Tested in Unity3D on:
 * Windows 8,8.1,10.
 
-For now project works only on Windows, work in progress on OS X!
+For now project works only on Windows.
 
-If you have found a bug, create an issue on the github page, or a pull request if you have a fix / extension. If you have a question, you can email me at soapcode24@gmail.com. 
+If you have found a bug, create an issue on the [github page](https://github.com/SoapCode/UCompile), or a pull request if you have a fix / extension. If you have a question, you can email me at soapcode24@gmail.com. 
 
 ##Main Features
 * Compilation and execution of classless and methodless C# code
@@ -173,3 +173,10 @@ Be aware, that every time you change typeCode of already existing type, previous
 
 **Summing it up in few words:** you can compile methodless code with CompileCode method, and compile classes with CompileType method. You can control what this code can access by adding using derictives via AddUsings method. All classes you compiled with CompileType will be accessible constantly.
 
+##UCompile structure
+
+Here I'll give you a brief overview of the system structure, for more details you can dig into the code, there's not much and it's all heavily commented.
+
+UCompile consists of 3 modules: MonoEvaluator.cs, CSScriptEngine.cs and CSScriptengineRemote.cs.
+
+**Module MonoEvaluator.cs.**
