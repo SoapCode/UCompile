@@ -67,7 +67,7 @@ public class CompileCodeExample : MonoBehaviour
 }
 ```
 
-On space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we sort of add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface. After compilation, instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.
+On space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we, sort of, add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface. After compilation, instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.
 
 So basically what happens here - your code gets wrapped in a method and a class, then this class is compiled and instance of this placeholder class is returned by CompileCode as interface object. Then method containing our code, called Execute, is invoked, and thats how our code gets executed. Try it, and you'll see a cube appear! 
 
@@ -220,7 +220,13 @@ This method allows you to add one or multiple using directives to system, once a
 Removes usings from system. Throws exceptions as well!
 
 **8. public void Reset()**
+
 Removes all usings and all references to previously compiled types from CSScriptEngine.
 
 ###Module CSScriptEngineRemote.cs.
+
+Every time you compile code using CSScriptEngine, assembly is created and loaded to current AppDomain. Problem is, you can't unload this assembly, without unloading whole AppDomain. So, if you have an infinite amount of code to compile, you'll need to unload your  AppDomain at some point to free memory occupied with unused assemblies. In order to provide option to avoid this limitation, CSScriptEngineRemote.cs module was created. CSScriptEngineRemote is the main class of this module, what it does is it creates another separate AppDomain and loads CSScriptEngine instance to it, then sends signals to it to perform operations we're already familiar with. This way, code compilation and, therefore, assembly creation and loading occurs in separate AppDomain. Which at any point we can unload with all dynamic assemblies, and free memory, without unloading our main AppDomain. CSScriptEngineRemote is designed to work similar to CSScriptEngine, but it has some nuances.
+
+
+
 
