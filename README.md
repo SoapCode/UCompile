@@ -38,7 +38,7 @@ There are 2 ways of how UCompile allows you to interact with these assemblies:
 
 It's going to make sense soon, I promise! Let's look at some examples:
 
-<a id="Methodless compilation"></a>**1. Methodless code compilation and execution.**
+<a id="Methodless compilation"></a>**1. Methodless code compilation and execution**
 
 Here let's create an empty scene, and add an empty GameObject to it with following script attached.
 
@@ -73,7 +73,7 @@ So basically what happens here - your code gets wrapped in a method and a class,
 
 This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, that's could be all you need from UCompile. But we can do more.
 
-<a id="Class compilation"></a>**2. Class compilation.**
+<a id="Class compilation"></a>**2. Class compilation**
 
 What if we want not only to create cube in our scene, but also make it change color on button press? So lets say code of this changing color MonoBehaviour goes like this:
 
@@ -181,13 +181,13 @@ Here I'll give you a brief overview of the system structure, for more details yo
 
 3 main building blocks of UCompile are: MonoEvaluator.cs, CSScriptEngine.cs and CSScriptengineRemote.cs.
 
-###Module MonoEvaluator.cs.
+###Module MonoEvaluator.cs
 
 MonoEvaluator is the main class of this module, it's job is to encapsulate instance of Mono.Csharp.Evaluator(the chosen way to dynamically compile code in UCompile), feed code strings to it with method CompileCode, handle compilation errors and warnings, save them in special container-class CompilerOutput. If errors occured during compilation, MonoEvaluator will throw a custom exception CompilerException, with information about all errors and warnings. Also MonoEvaluator contains property CompilationOutput, allowing you to get information about last compilation regardless of if it failed or not. 
 
 Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csharp.Evaluator instance under the hood of MonoEvaluator, which allows it to expose these assemblies functionality to code that is to be compiled by Mono.Csharp.Evaluator. You still need to include using directives in your code though, but that's where using directives control system comes into play of CSScriptEngine class, which we will discuss later.
 
-###Module CSScriptEngine.cs.
+###Module CSScriptEngine.cs
 
 This module contains class CSScriptEngine, the main class of the whole UCompile system. It uses wrapped MonoEvaluator class instance to perform compilation. You're supposed to interact with this class first and foremost. Some of its methods:
 
@@ -223,7 +223,7 @@ Removes usings from system. Throws exceptions as well!
 
 Removes all usings and all references to previously compiled types from CSScriptEngine.
 
-###Module CSScriptEngineRemote.cs.
+###Module CSScriptEngineRemote.cs
 
 Every time you compile code using CSScriptEngine, assembly is created and loaded to current AppDomain. Problem is, you can't unload this assembly, without unloading whole AppDomain. So, if you have an infinite amount of code to compile, you'll need to unload your  AppDomain at some point to free memory occupied with unused assemblies. In order to provide option to avoid this limitation, CSScriptEngineRemote.cs module was created. CSScriptEngineRemote is the main class of this module, what it does is it creates another separate AppDomain and loads CSScriptEngine instance to it, then sends signals to it to perform operations we're already familiar with. This way, code compilation and, therefore, assembly creation and loading occurs in separate AppDomain. Which at any point we can unload with all dynamic assemblies, and free memory, without unloading our main AppDomain. CSScriptEngineRemote is designed to work similar to CSScriptEngine, but it has some nuances.
 
