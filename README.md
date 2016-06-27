@@ -227,6 +227,27 @@ Removes all usings and all references to previously compiled types from CSScript
 
 Every time you compile code using CSScriptEngine, assembly is created and loaded to current AppDomain. Problem is, you can't unload this assembly, without unloading whole AppDomain. So, if you have an infinite amount of code to compile, you'll need to unload your  AppDomain at some point to free memory occupied with unused assemblies. In order to provide option to avoid this limitation, CSScriptEngineRemote.cs module was created. CSScriptEngineRemote is the main class of this module, what it does is it creates another separate AppDomain and loads CSScriptEngine instance to it, then sends signals to it to perform operations we're already familiar with. This way, code compilation and, therefore, assembly creation and loading occurs in separate AppDomain. Which at any point we can unload with all dynamic assemblies, and free memory, without unloading our main AppDomain. CSScriptEngineRemote is designed to work similar to CSScriptEngine, but it has some nuances.
 
+**1. public void LoadDomain(string name = "")**
 
+Creates new AppDomain inside Unity application. That's where our remote CSScriptEngine instance will go. You need to call LoadDomain before calling any other method in CSScriptEngineRemote.
 
+**2. public void UnloadDomain()**
 
+Unloads remote AppDomain. CSScriptEngineRemote implements IDisposable interface, and this method will be called in Dispose() 
+automatically, if you didn't call it before manually. Be aware, you can't leave remote AppDomain hanging when you're done working with CSSCriptEngineRemote, you have to call UnloadDomain or Dispose if you called LoadDomain previously.
+
+**3. public void CompileCode(string code)**
+
+As you can see, here CompileCode doesn't return IScript object, but rather saves it internally. Other than that, it works in a similar manner with CSScriptEngine. 
+
+**4. public void ExecuteLastCompiledCode()**
+
+This method calls Execute function of last compiled, saved internally, IScript object. If with CSScriptEngine we get to do it manually, here this function does it for us.
+
+**5. public void CompileType(string id, string code)**
+
+CompileType also now doesn't return Type object. And it can't compile MonoBehaviours, oh by the way, never compile MonoBehaviours with CSScriptEngineRemote.CompileType(), it may appear to work fine at first, but will inevitably lead to strange behaviours, bugs and crashes. Plain C# classes work fine.
+
+Other methods work pretty similar to CSScriptEngine. So, your best bet with CSScriptEngineRemote is to compile plain C# classes and methodless code, you can't compile coroutines, every dynamically created with code in CSScriptEngineRemote GameObject must be destroyed before unloading AppDomain. Moreover messing with AppDomains in Unity can sometimes lead to a bunch of strange and unexpected bugs, so be aware before using CSScriptEngineRemote. That's the price you pay for ability to free memory from dynamic assemblies at any time during runtime. 
+
+Examples: <a href="#cheatsheet">CheatSheet</a>.
