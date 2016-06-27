@@ -192,24 +192,31 @@ Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csh
 This module contains class CSScriptEngine, the main class of the whole UCompile system. It uses wrapped MonoEvaluator class instance to perform compilation. You're supposed to interact with this class first and foremost. Some of its methods:
 
 **1. public IScript CompileCode(string code = "")**
+
 This method compiles methodless code, and returns IScript object. You can execute your methodless code by invoking Execute method of IScript object. Returns null, if compilation failed. For examples see  <a href="#Methodless compilation">Methodless code compilation and execution</a> in <a href="#How it works">How it works</a> chapter.
 
 **2. public Type CompileType(string typeID, string code)**
+
 This method compiles class code(that is string with code describing class) saving reference to it by using user provided typeID. Once you compiled a type, it's now in system, and if you want to change its code - use CompileType with the same typeID you initially provided for this type, and your new type code. Now, when you use this class in your dynamic code only the last compiled version will be used. Examples: <a href="#Class compilation">Class compilation</a>.
 
 **3. public void RemoveTypes(params string[] typeIDs)**
+
 Removes type from the system given its typeID. After that you can't use this type in your dynamic code.
 
 **4. public IEnumerable CompileCoroutine(string coroutineCode = "")**
+
 Did I mention, we also can compile coroutines? ;-) Same principles as with CompileCode apply, with few additions. Apart from that you need to place yield return somewhere in your coroutine code, this method returns IEnumerable object. Returning this instead of IEnumerator allows us to "rewind" coroutine every time we invoke GetEnumerator on IEnumerable object, what is pretty handy. You can look at some usage examples in <a href="#cheatsheet">CheatSheet</a>.
 
 **5. public void AddOnCompilationSucceededHandler(Action<CompilerOutput> onCompilationSucceededHandler)**
+
 This method as well as its relatives with similar signature, allows you to, roughly speaking, "subscribe" and "unsubscribe" "event handlers" to the compilation succeded and compilation failed "events". Depending on whether last compilation succeded or failed, CSScriptEngine will execute related delegate, passing CompilerOutput instance with information about warnings and errors. You can subscribe to this delegate with your Action<CompilerOutput> method, to do whatever you want. Fo example, you can transmit errors and warnings to some kind of output window. See examples <a href="#cheatsheet">here</a>.
 
 **6. public void AddUsings(string usings)**
+
 This method allows you to add one or multiple using directives to system, once added these usings apply to all your dynamic code, until you remove them. Thats how you control what is visible and accessible to dynamic code. Also it automatically references assemblies related to usings. Beware, throws exceptions! If you're not sure about input, probably want to handle them.
 
 **7. public void RemoveUsings(string usings)**
+
 Removes usings from system. Throws exceptions as well!
 
 **8. public void Reset()**
