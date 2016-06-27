@@ -24,7 +24,7 @@ If you have found a bug, create an issue on the [github page](https://github.com
 
 You can simply download/clone this repo and copy UCompile folder to your Unity3D project.
 
-##How it works?
+## <a id="How it works"></a>How it works?
 The main principle behind the scenes is simple: take string with C# code, compile it and produce Assembly representing this code, load it into current AppDomain. 
 
 <img src="DocumentationMisc/CompilationScheme.png?raw=true" alt="compilation scheme" width="940px" height="454px"/>
@@ -38,7 +38,7 @@ There are 2 ways of how UCompile allows you to interact with these assemblies:
 
 It's going to make sense soon, I promise! Let's look at some examples:
 
-**1. Methodless code compilation and execution.**
+<a id="Methodless compilation"></a>**1. Methodless code compilation and execution.**
 
 Here let's create an empty scene, and add an empty GameObject to it with following script attached.
 
@@ -73,7 +73,7 @@ So basically what happens here - your code gets wrapped in a method and a class,
 
 This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, that's could be all you need from UCompile. But we can do more.
 
-**2. Class compilation.**
+<a id="Class compilation"></a>**2. Class compilation.**
 
 What if we want not only to create cube in our scene, but also make it change color on button press? So lets say code of this changing color MonoBehaviour goes like this:
 
@@ -189,3 +189,7 @@ Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csh
 
 **Module CSScriptEngine.cs.**
 
+This module contains class CSScriptEngine, the main class of the whole UCompile system. You're supposed to interact with this class first and foremost. Some of its methods:
+
+**1. public IScript CompileCode(string code = "")**
+This method uses underlying wrapped instance of MonoEvaluator to compile methodless code, and returns IScript object. You can execute your methodless code by invoking Execute method of IScript object. Returns null, if compilation failed. For examples see  <a href="#Methodless compilation">Methodless code compilation and execution</a> in <a href="#How it works">How it works</a> chapter.
