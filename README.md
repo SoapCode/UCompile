@@ -189,7 +189,10 @@ Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csh
 
 **Module CSScriptEngine.cs.**
 
-This module contains class CSScriptEngine, the main class of the whole UCompile system. You're supposed to interact with this class first and foremost. Some of its methods:
+This module contains class CSScriptEngine, the main class of the whole UCompile system. It uses wrapped MonoEvaluator class instance to perform compilation. You're supposed to interact with this class first and foremost. Some of its methods:
 
 **1. public IScript CompileCode(string code = "")**
-This method uses underlying wrapped instance of MonoEvaluator to compile methodless code, and returns IScript object. You can execute your methodless code by invoking Execute method of IScript object. Returns null, if compilation failed. For examples see  <a href="#Methodless compilation">Methodless code compilation and execution</a> in <a href="#How it works">How it works</a> chapter.
+This method compiles methodless code, and returns IScript object. You can execute your methodless code by invoking Execute method of IScript object. Returns null, if compilation failed. For examples see  <a href="#Methodless compilation">Methodless code compilation and execution</a> in <a href="#How it works">How it works</a> chapter.
+
+**2. public Type CompileType(string typeID, string code)**
+This method compiles class code(that is string with code describing class) saving reference to it by using user provided typeID. Once you compiled a type, it's now in system, and if you want to change its code - use CompileType with the same typeID you initially provided for this type, and your new type code. 
