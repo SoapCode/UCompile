@@ -181,13 +181,13 @@ Here I'll give you a brief overview of the system structure, for more details yo
 
 3 main building blocks of UCompile are: MonoEvaluator.cs, CSScriptEngine.cs and CSScriptengineRemote.cs.
 
-**Module MonoEvaluator.cs.**
+###Module MonoEvaluator.cs.
 
 MonoEvaluator is the main class of this module, it's job is to encapsulate instance of Mono.Csharp.Evaluator(the chosen way to dynamically compile code in UCompile), feed code strings to it with method CompileCode, handle compilation errors and warnings, save them in special container-class CompilerOutput. If errors occured during compilation, MonoEvaluator will throw a custom exception CompilerException, with information about all errors and warnings. Also MonoEvaluator contains property CompilationOutput, allowing you to get information about last compilation regardless of if it failed or not. 
 
 Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csharp.Evaluator instance under the hood of MonoEvaluator, which allows it to expose these assemblies functionality to code that is to be compiled by Mono.Csharp.Evaluator. You still need to include using directives in your code though, but that's where using directives control system comes into play of CSScriptEngine class, which we will discuss later.
 
-**Module CSScriptEngine.cs.**
+###Module CSScriptEngine.cs.
 
 This module contains class CSScriptEngine, the main class of the whole UCompile system. It uses wrapped MonoEvaluator class instance to perform compilation. You're supposed to interact with this class first and foremost. Some of its methods:
 
@@ -214,3 +214,6 @@ Removes usings from system. Throws exceptions as well!
 
 **8. public void Reset()**
 Removes all usings and all references to previously compiled types from CSScriptEngine.
+
+###Module CSScriptEngineRemote.cs.
+
