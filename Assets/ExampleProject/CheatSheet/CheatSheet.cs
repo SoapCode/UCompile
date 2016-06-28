@@ -204,7 +204,7 @@ public class CheatSheet : MonoBehaviour {
         engine.RemoveTypes("AnotherSimpleType");
 
         //This will cause a compilation error, beacause we removed AnotherSimpleType 
-        IScript result = engine.CompileCode(@"
+        engine.CompileCode(@"
                                                  AnotherSimpleType sm = new AnotherSimpleType(); 
                                                ");
 
