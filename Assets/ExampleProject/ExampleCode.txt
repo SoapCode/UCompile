@@ -130,3 +130,5 @@ for (int i = 0; i<clmnArray.Length - 1; i++)
 }
 
 ------------------------------------------------
+
+if you compile 2 types with same typename with evaluator, the last compi;ec ond will be used when you use it

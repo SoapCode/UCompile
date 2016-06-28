@@ -548,7 +548,18 @@ namespace UCompile
         /// <returns>Type of the class to compile. null, if compilation failed</returns>
         public Type CompileType(string typeID, string code)
         {
+            //if type we are trying to compile already exists in _unit.TypeCodeStore
+            //then we're editing existing type, and not adding new one.
+            //In this case we need to SoftReset _unit, to get rid of a reference to previously compiled type
+            //with the same ID, so it becomes inaccessible on further compilations of code or types.
+            if (_unit.TypeCodeStore.ContainsKey(typeID))
+            {
+                _unit.SoftReset();
+                UpdateUsings();
+            }
+
             _unit.AddType(typeID, code);
+
             _lastCompiledAssembly = _unit.CompileTypesIntoAssembly();
 
             if (_lastCompiledAssembly == null)
