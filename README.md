@@ -205,7 +205,7 @@ Removes type from the system given its typeID. After that you can't use this typ
 
 **4. public IEnumerable CompileCoroutine(string coroutineCode = "")**
 
-Did I mention, we also can compile coroutines? ;-) Same principles as with CompileCode apply, with few additions. Apart from that you need to place yield return somewhere in your coroutine code, this method returns IEnumerable object. Returning this instead of IEnumerator allows us to "rewind" coroutine every time we invoke GetEnumerator on IEnumerable object, what is pretty handy. You can look at some usage examples in <a href="#cheatsheet">CheatSheet</a>.
+Did I mention, we also can compile coroutines? ;-) Same principles as with CompileCode apply, with few additions. Apart from that you need to place yield return somewhere in your coroutine code, this method returns IEnumerable object. Returning this instead of IEnumerator allows us to "rewind" coroutine every time we invoke GetEnumerator on IEnumerable object, what is pretty handy. You can look at some usage examples in <a href="#cheatsheet">Cheat sheet</a>.
 
 **5. public void AddOnCompilationSucceededHandler(Action<CompilerOutput> onCompilationSucceededHandler)**
 
@@ -250,13 +250,13 @@ CompileType also now doesn't return Type object. And it can't compile MonoBehavi
 
 Other methods work pretty similar to CSScriptEngine. So, your best bet with CSScriptEngineRemote is to compile plain C# classes and methodless code, you can't compile coroutines, every dynamically created with code in CSScriptEngineRemote GameObject must be destroyed before unloading AppDomain. Moreover messing with AppDomains in Unity can sometimes lead to a bunch of strange and unexpected bugs, so be aware before using CSScriptEngineRemote. That's the price you pay for ability to free memory from dynamic assemblies at any time during runtime. 
 
-Examples: <a href="#cheatsheet">CheatSheet</a>.
+Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
 ##Example project
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
-##<a id="#cheatsheet"></a>Cheat sheet
+##<a id="cheatsheet"></a>Cheat sheet
 
 Here I'll give you examples of how you can use UCompile. This cheat sheet is also located in Ucompile/Assets/ExampleProject/CheatSheet as MonoBehaviour script, which you can test in scene, also located in the same folder.
 
