@@ -256,11 +256,28 @@ Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
-In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test it's features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but neverthrless usable GUI, let's break it down.
+In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but neverthrless usable GUI, let's break it down.
 
-<img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" width="1253px" height="577px"/>
+<img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
 
+So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes.
 
+**1. All dynamic types compiled button** 
+
+Pressing this button unfolds a drop-down list with buttons, each representing a type that you compiled in type compilation window (4).
+Pressing this "type" button allows you to edit types code, or delete it from system.
+
+**2. Add new type button**
+
+Makes Type compilation window(4) appear. 
+
+**3. Delete all dynamic objects button**
+
+Simply deletes every GameObject with "DynamicObject" tag in the scene.
+
+**4. Type compilation window**
+
+Basically uses CSScriptEngine/CsscriptEnginRemotes CompileType method in the background, feeding to it TypeID from "Enter TypeID" input field, and code from "Enter Type definition..." input field.
 
 ##<a id="cheatsheet"></a>Cheat sheet
 
