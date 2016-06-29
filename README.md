@@ -264,12 +264,12 @@ So, what's it all about in few words? Basically, it's a GUI bridge between you a
 
 **1. All dynamic types compiled button** 
 
-Pressing this button unfolds a drop-down list with buttons, each representing a type that you compiled in type compilation window (4).
+Pressing this button unfolds a drop-down list with buttons, each representing a type that you compiled in "Type compilation window" (4).
 Pressing this "type" button allows you to edit types code, or delete it from system.
 
 **2. Add new type button**
 
-Makes Type compilation window(4) appear. 
+Makes "Type compilation window"(4) appear. 
 
 **3. Delete all dynamic objects button**
 
@@ -277,7 +277,15 @@ Simply deletes every GameObject with "DynamicObject" tag in the scene.
 
 **4. Type compilation window**
 
-Basically uses CSScriptEngine/CsscriptEnginRemotes CompileType method in the background, feeding to it TypeID from "Enter TypeID" input field, and code from "Enter Type definition..." input field.
+Basically uses CSScriptEngine/CsscriptEnginRemotes CompileType method in the background, feeding to it TypeID from "Enter TypeID" input field, and code from "Enter Type definition..." input field. Every time compilation succeeds, new "type" button is added to "All types"(1) dropdown list. 
+
+**5. Code compilation window**
+
+This window uses CompileCode and CompileCoroutine methods in the background. "Remote" toggle allows you to swap between CSScriptEngine and CSScriptEgnineRemote, so, if you turn it on, "Compile", "Execute" and "Compile and Add type" buttons will send signals to CSScriptEngineRemote instead of CSScriptEngine, and vice versa. Also it immediately invokes LoadDomain method of CSScriptEngineRemote when you turn it on, and unloads it when you turn it off.
+
+"Animation" and "Code" toggles determine, whether CompileCode or CompileCoroutine will be used when you press "Compile" button, and send your code in input field to CSScriptEngine/CSScriptEngineRemote. Be aware, that if you use "Animation" toggle with "Remote" toggle on, CompileCode still going to be used in the background, don't try to compile coroutine with CSScriptengineRemote.
+
+Assets/ExampleProject/ExampleCode.txt file contains code examples, with which you can play in Main scene.
 
 ##<a id="cheatsheet"></a>Cheat sheet
 
