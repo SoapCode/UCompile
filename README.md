@@ -260,7 +260,7 @@ In UCompile/Assets/ExampleProject folder resides a Unity project I've made speci
 
 <img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
 
-So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes.
+So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes. I think, the best way to understand how everything works is to watch a video, so you can do it right now, and then, if something is unclear, look at GUI reference below.
 
 **1. All dynamic types compiled button** 
 
