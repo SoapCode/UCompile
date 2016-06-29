@@ -256,6 +256,12 @@ Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
+In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test it's features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but neverthrless usable GUI, let's break it down.
+
+<img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" width="1253px" height="577px"/>
+
+
+
 ##<a id="cheatsheet"></a>Cheat sheet
 
 Here I'll give you examples of how you can use UCompile. This cheat sheet is also located in Ucompile/Assets/ExampleProject/CheatSheet as MonoBehaviour script, which you can test in scene, also located in the same folder.
