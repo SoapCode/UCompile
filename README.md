@@ -618,3 +618,7 @@ Here I'll give you examples of how you can use UCompile. This cheat sheet is als
         engineRemote.UnloadDomain();//Important!
     }
 ```
+
+##License
+
+<a href="Ucompile/License.txt">License</a>
