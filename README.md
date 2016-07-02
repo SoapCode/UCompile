@@ -24,7 +24,7 @@ If you have found a bug, create an issue on the [github page](https://github.com
 
 First of all, you need to change some build settings. Go File -> Build Settings -> Player Settings -> Other Settings -> Optimization -> Api Compatibility Level, set it to .Net 2.0. Now you're all set to install UCompile.
 
-1. <a href=#"https://github.com/SoapCode/UCompile/releases">Releases page.</a>
+1. [Releases page](https://github.com/SoapCode/UCompile/releases).
 
 * **UCompile.v.1.0.0-Core.unitypackage** - without Tests and Example project.
 * **UCompile.v.1.0.0-CoreWithTests.unitypackage** - contains Tests.
