@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UCompile;
 using ExampleProjectGUI;
 
 //In this namespace developer should place all classes
-//he wants to be exposed to user code
+//he wants to be exposed to users code
 namespace WhitelistAPI
 {
 

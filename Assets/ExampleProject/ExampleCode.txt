@@ -60,42 +60,42 @@ Control cube movement with arrow keys
 
 Type window code:
 
-public class MoverController : UnityEngine.MonoBehaviour
+public class MoverController : MonoBehaviour
 {
     void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Mover.MoveItUp(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+            Mover.MoveItUp(new Cube(this.gameObject), Mathf.Infinity, 0);
         }
-        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.UpArrow))
-        {
-            Mover.StopAllMovement();
-        }
-
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.DownArrow))
-        {
-            Mover.MoveItDown(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
-        }
-        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             Mover.StopAllMovement();
         }
 
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Mover.MoveItLeft(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+            Mover.MoveItDown(new Cube(this.gameObject), Mathf.Infinity, 0);
         }
-        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             Mover.StopAllMovement();
         }
 
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Mover.MoveItRight(new Cube(this.gameObject), UnityEngine.Mathf.Infinity, 0);
+            Mover.MoveItLeft(new Cube(this.gameObject), Mathf.Infinity, 0);
         }
-        if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            Mover.StopAllMovement();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Mover.MoveItRight(new Cube(this.gameObject), Mathf.Infinity, 0);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             Mover.StopAllMovement();
         }
@@ -130,5 +130,3 @@ for (int i = 0; i<clmnArray.Length - 1; i++)
 }
 
 ------------------------------------------------
-
-if you compile 2 types with same typename with evaluator, the last compi;ec ond will be used when you use it

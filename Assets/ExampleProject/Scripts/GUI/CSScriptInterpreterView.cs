@@ -2,6 +2,7 @@
 using System.Collections;
 using UCompile;
 using System.Collections.Generic;
+using System;
 
 namespace ExampleProjectGUI
 {
@@ -32,6 +33,7 @@ namespace ExampleProjectGUI
         {
             _engine.AddUsings("using WhitelistAPI;");
             _engine.AddUsings("using UnityEngine;");
+            
         }
 
         void Update()
@@ -43,6 +45,7 @@ namespace ExampleProjectGUI
                     _engineRemote.LoadDomain("RemoteDomain");
                     _engineRemote.AddUsings("using WhitelistAPI;");
                     _engineRemote.AddUsings("using UnityEngine;");
+                    _engineRemote.AddUsings("using System;");
                 }
                 if (!GameObjectWatcher.Initialized)
                     GameObjectWatcher.Initialize();
