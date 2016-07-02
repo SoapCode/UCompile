@@ -2,7 +2,7 @@
 
 ##Compile and execute C# code inside Unity3D scene at runtime!
 
-UCompile is a system for compiling and executing strings with C# code inside Unity3D scenes at runtime. You can use it to allow players of your Unity3D game to modify your game with C# code, or as REPL engine, possibilities are restricted by only your imagination! For usage examples see <a href="#usage examples">usage examples chapter</a>. Works in editor and in build.
+UCompile is a system for compiling and executing strings with C# code inside Unity3D scenes at runtime. You can use it to allow players of your Unity3D game to modify your game with C# code, or as REPL engine, possibilities are restricted by only your imagination! For usage examples see <a href="#example project">Example project chapter</a> and <a href="cheetsheat">Cheat sheet</a>. Works in editor and in build.
 
 Tested in Unity3D on:
 * Windows 8,8.1,10.
@@ -252,9 +252,40 @@ Other methods work pretty similar to CSScriptEngine. So, your best bet with CSSc
 
 Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
-##Example project
+##<a id="example project"></a>Example project
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
+
+In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI.
+
+<img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
+
+So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes. By the way, "using UnityEngine" is automatically added to this classes, as well as custom namespace WhitelistAPI at Assets/ExampleProject/Scripts/WhitelistAPI folder. WhitleistAPI namespace consists of various methods and classes to play with, using dynamic compilation. I think, the best way to understand how everything works is to watch a video, so you can do it right now (https://www.youtube.com/watch?v=Iipsxbe17B8), and then, if something is unclear, look at GUI reference below.
+
+**1. All dynamic types compiled button** 
+
+Pressing this button unfolds a drop-down list with buttons, each representing a type that you compiled in "Type compilation window" (4).
+Pressing this "type" button allows you to edit types code, or delete it from system.
+
+**2. Add new type button**
+
+Makes "Type compilation window"(4) appear. 
+
+**3. Delete all dynamic objects button**
+
+Simply deletes every GameObject with "DynamicObject" tag in the scene.
+
+**4. Type compilation window**
+
+Basically uses CSScriptEngine/CsscriptEnginRemotes CompileType method in the background, feeding to it TypeID from "Enter TypeID" input field, and code from "Enter Type definition..." input field. Every time compilation succeeds, new "type" button is added to "All types"(1) dropdown list. 
+
+**5. Code compilation window**
+
+This window uses CompileCode and CompileCoroutine methods in the background. "Remote" toggle allows you to swap between CSScriptEngine and CSScriptEgnineRemote, so, if you turn it on, "Compile", "Execute" and "Compile and Add type" buttons will send signals to CSScriptEngineRemote instead of CSScriptEngine, and vice versa. Also it immediately invokes LoadDomain method of CSScriptEngineRemote when you turn it on, and unloads it when you turn it off.
+
+"Animation" and "Code" toggles determine, whether CompileCode or CompileCoroutine will be used when you press "Compile" button, and send your code in input field to CSScriptEngine/CSScriptEngineRemote. Be aware, that if you use "Animation" toggle with "Remote" toggle on, CompileCode still going to be used in the background, don't try to compile coroutine with CSScriptengineRemote.
+
+Assets/ExampleProject/ExampleCode.txt file contains code examples, with which you can play in Main scene.
 
 ##<a id="cheatsheet"></a>Cheat sheet
 
@@ -587,3 +618,7 @@ Here I'll give you examples of how you can use UCompile. This cheat sheet is als
         engineRemote.UnloadDomain();//Important!
     }
 ```
+
+##License
+
+<a href="LICENSE.txt">License</a>
