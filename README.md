@@ -2,7 +2,7 @@
 
 ##Compile and execute C# code inside Unity3D scene at runtime!
 
-UCompile is a system for compiling and executing strings with C# code inside Unity3D scenes at runtime. You can use it to allow players of your Unity3D game to modify your game with C# code, or as REPL engine, possibilities are restricted by only your imagination! For usage examples see <a href="#usage examples">usage examples chapter</a>. Works in editor and in build.
+UCompile is a system for compiling and executing strings with C# code inside Unity3D scenes at runtime. You can use it to allow players of your Unity3D game to modify your game with C# code, or as REPL engine, possibilities are restricted by only your imagination! For usage examples see <a href="#example project">usage examples chapter</a>. Works in editor and in build.
 
 Tested in Unity3D on:
 * Windows 8,8.1,10.
@@ -252,7 +252,7 @@ Other methods work pretty similar to CSScriptEngine. So, your best bet with CSSc
 
 Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
-##Example project
+<a id="example project"></a>##Example project
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
