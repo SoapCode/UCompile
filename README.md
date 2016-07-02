@@ -260,7 +260,7 @@ In UCompile/Assets/ExampleProject folder resides a Unity project I've made speci
 
 <img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
 
-So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes. By the way, "using UnityEngine" is automatically added to this classes, as well as custom namespace WhitelistAPI at Assets/ExampleProject/Scripts/WhitelistAPI folder. WhitleistAPI namespace consists of various methods and classes to play with, using dynamic compilation. I think, the best way to understand how everything works is to watch a video, so you can do it right now, and then, if something is unclear, look at GUI reference below.
+So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes. By the way, "using UnityEngine" is automatically added to this classes, as well as custom namespace WhitelistAPI at Assets/ExampleProject/Scripts/WhitelistAPI folder. WhitleistAPI namespace consists of various methods and classes to play with, using dynamic compilation. I think, the best way to understand how everything works is to watch a video, so you can do it right now (https://www.youtube.com/watch?v=Iipsxbe17B8), and then, if something is unclear, look at GUI reference below.
 
 **1. All dynamic types compiled button** 
 
