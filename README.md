@@ -266,7 +266,7 @@ Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
-In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI. Be aware, that it can fall apart if you use unconventional screen resolutions, or screen scales. I'd recommend using 1920 X 1080 and 100% scale.
+In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI. Be aware, that it can fall apart if you use unconventional screen resolutions, or screen scales. I'd recommend using 1920 X 1080 and 100% scale. And you need to add "DynamicObject" tag to your tags, in order for ExampleCode.txt examples to work properly.
 
 <img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
 
