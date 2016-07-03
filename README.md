@@ -631,4 +631,4 @@ Here I'll give you examples of how you can use UCompile. This cheat sheet is als
 
 ##License
 
-<a href="LICENSE.txt">License</a>
+<a href="Assets/LICENSE.txt">License</a>
