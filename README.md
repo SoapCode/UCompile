@@ -266,7 +266,7 @@ Examples: <a href="#cheatsheet">Cheat sheet</a>.
 
 It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!
 
-In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI.
+In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI. Be aware, that it can fall apart if you use unconventional screen resolutions, or screen scales. I'd recommend using 1920 X 1080 and 100% scale.
 
 <img src="DocumentationMisc/ExampleProjectGUI.png?raw=true" alt="exampleprojectgui" />
 
@@ -631,4 +631,4 @@ Here I'll give you examples of how you can use UCompile. This cheat sheet is als
 
 ##License
 
-<a href="LICENSE.txt">License</a>
+<a href="Assets/LICENSE.txt">License</a>
