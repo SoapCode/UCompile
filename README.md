@@ -1,3 +1,5 @@
+<img src="DocumentationMisc/Big logo.png?raw=true" alt="big logo" width="450px" height="203px">
+
 #Runtime C# script engine for Unity3D
 
 ##Compile and execute C# code inside Unity3D scene at runtime!
