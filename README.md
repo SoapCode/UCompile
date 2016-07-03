@@ -37,7 +37,7 @@ First of all, you need to change some build settings. Go File -> Build Settings 
 ## <a id="How it works"></a>How it works?
 The main principle behind the scenes is simple: take string with C# code, compile it and produce Assembly representing this code, load it into current AppDomain. 
 
-<img src="DocumentationMisc/CompilationScheme.png?raw=true" alt="compilation scheme" width="940px" height="454px"/>
+<img src="DocumentationMisc/CompilationScheme.png?raw=true" alt="compilation scheme" width="600px" height="289px"/>
 
 Now this code is officially a part of your application, as long as AppDomain it is loaded into stays loaded. 
 
@@ -185,7 +185,7 @@ Be aware, that every time you change typeCode of already existing type, previous
 
 ##UCompile structure
 
-<img src="DocumentationMisc/UcompileStructureScheme.png?raw=true" alt="ucompile structure scheme" width="1035px" height="240px"/>
+<img src="DocumentationMisc/UcompileStructureScheme.png?raw=true" alt="ucompile structure scheme" width="700px" height="162px"/>
 
 Here I'll give you a brief overview of the system structure, for more details you can dig into the code, there's not much and it's all heavily commented.
 
