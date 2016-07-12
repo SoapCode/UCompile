@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:6419/ -->
+<html lang="en" style="" hv="a0"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>README.md - Grip</title>
+  <link rel="icon" href="http://localhost:6419/__/grip/static/favicon.ico">
+  <link rel="stylesheet" href="./README.md - Grip_files/frameworks-b1642e37b45963af25ee113eaec46c25df28655ab893baf240e31a7dd0a215ea.css">
+  <link rel="stylesheet" href="./README.md - Grip_files/github-e9228d764bc8fd6a49739e9a2e155477e49f87e735d550f10ae45b3cdb394a95.css">
+  <link rel="stylesheet" href="./README.md - Grip_files/site-3b27741f2e22b48854ecee715112d86949a7c9e4e502f41739c4578cc65283da.css">
+  <link rel="stylesheet" href="./README.md - Grip_files/system-fonts-b4cd5a28f837260371d5a61872bda2262ec244fc0c92bc9243fec8d26d246840.css">
+  <link rel="stylesheet" href="http://octicons.github.com/components/octicons/octicons/octicons.css">
+  <style>
+    /* Page tweaks */
+    .preview-page {
+      margin-top: 64px;
+    }
+    /* User-content tweaks */
+    .timeline-comment-wrapper > .timeline-comment:after,
+    .timeline-comment-wrapper > .timeline-comment:before {
+      content: none;
+    }
+    /* User-content overrides */
+    .discussion-timeline.wide {
+      width: 920px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div id="preview-page" class="preview-page" data-autorefresh-url="/__/grip/refresh/">
+
+    
+
+      <div role="main" class="main-content">
+        <div class="container new-discussion-timeline experiment-repo-nav">
+          <div class="repository-content">
+            <div id="readme" class="readme boxed-group clearfix announce instapaper_body md">
+              
+                <h3>
+                  <span class="octicon octicon-book"></span>
+                  README.md - Grip
+                </h3>
+              
+              <article class="markdown-body entry-content" itemprop="text" id="grip-content">
+                <p><a href="./README.md - Grip_files/logo github banner.png" target="_blank"><img src="./README.md - Grip_files/logo github banner.png" alt="big logo" style="max-width:100%;"></a></p>
+
+<h1>
+<a id="user-content-runtime-c-script-engine-for-unity3d" class="anchor" href="http://localhost:6419/#runtime-c-script-engine-for-unity3d" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Runtime C# script engine for Unity3D</h1>
+
+<h2>
+<a id="user-content-compile-and-execute-c-code-inside-unity3d-scene-at-runtime" class="anchor" href="http://localhost:6419/#compile-and-execute-c-code-inside-unity3d-scene-at-runtime" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compile and execute C# code inside Unity3D scene at runtime!</h2>
+
+<p>UCompile is a system for compiling and executing strings with C# code inside Unity3D scenes at runtime. You can use it to allow players of your Unity3D game to modify your game with C# code, or as REPL engine, possibilities are restricted by only your imagination! For usage examples see <a href="http://localhost:6419/#example%20project">Example project chapter</a> and <a href="http://localhost:6419/cheetsheat">Cheat sheet</a>. Works in editor and in build.</p>
+
+<p>Tested in Unity3D on:</p>
+
+<ul>
+<li>Windows 8,8.1,10 x86.</li>
+</ul>
+
+<p>For now project works only on Windows x86.</p>
+
+<p>If you have found a bug, create an issue on the <a href="https://github.com/SoapCode/UCompile">github page</a>, or a pull request if you have a fix / extension. If you have a question, you can email me at <a href="mailto:soapcode24@gmail.com">soapcode24@gmail.com</a>. </p>
+
+<h2>
+<a id="user-content-main-features" class="anchor" href="http://localhost:6419/#main-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main Features</h2>
+
+<ul>
+<li>Compilation and execution of classless and methodless C# code</li>
+<li>C# classes compilation</li>
+<li>Control on namespaces exposed to the code to restrict its access of resources</li>
+<li>C# code compilation and execution in separate AppDomain to control memory consumption</li>
+<li>Coroutine compilation and execution</li>
+<li>Works in build as well as in editor</li>
+<li>Example project with console-like GUI interface to test it all out</li>
+</ul>
+
+<h2>
+<a id="user-content-installation" class="anchor" href="http://localhost:6419/#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>First of all, you need to change some build settings, otherwise you'll get unhandled exception on import. Go File -&gt; Build Settings -&gt; Player Settings -&gt; Other Settings -&gt; Optimization -&gt; Api Compatibility Level, set it to .Net 2.0. Now you're all set to install UCompile.</p>
+
+<ol>
+<li><p><a href="https://github.com/SoapCode/UCompile/releases">Releases page</a>.</p></li>
+</ol>
+
+<ul>
+<li>
+<strong>UCompile.v.1.0.0-Core.unitypackage</strong> - without Tests and Example project.</li>
+<li>
+<strong>UCompile.v.1.0.0-CoreWithTests.unitypackage</strong> - contains Tests.</li>
+<li><p><strong>UCompile.v.1.0.0-Full.unitypackage</strong> - contains both Tests and Example project.</p></li>
+</ul>
+
+<ol>
+<li>You can simply download/clone this repo and copy UCompile folder to your Unity3D project.</li>
+</ol>
+
+<h2>
+<a id="user-content-how-it-works" class="anchor" href="http://localhost:6419/#how-it-works" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a id="user-content-How it works"></a>How it works?</h2>
+
+<p>The main principle behind the scenes is simple: take string with C# code, compile it and produce Assembly representing this code, load it into current AppDomain. </p>
+
+<p><a href="./README.md - Grip_files/CompilationScheme.png" target="_blank"><img src="./README.md - Grip_files/CompilationScheme.png" alt="compilation scheme" width="600px" height="289px" style="max-width:100%;"></a></p>
+
+<p>Now this code is officially a part of your application, as long as AppDomain it is loaded into stays loaded. </p>
+
+<p>There are 2 ways of how UCompile allows you to interact with these assemblies:</p>
+
+<ol>
+<li>Compiling classes. You can compile your custom classes, and make them a part of your Unity application. These classes will be able to use any functionality you've decided to expose to it, from assemblies, which are loaded right now in main Unity AppDomain, including assemblies with classes which you dynamically compiled with UCompile earlier.</li>
+<li>Compiling and executing methodless code. You can compile plain methodless code, using the same exposure restriction system. Imagine that you put your code in some kind of a "Main()" method, that you can execute at any moment, and this code can use classes, that you have already dynamically compiled with the first way.</li>
+</ol>
+
+<p>It's going to make sense soon, I promise! Let's look at some examples:</p>
+
+<p><a id="user-content-Methodless compilation"></a><strong>1. Methodless code compilation and execution</strong></p>
+
+<p>Here let's create an empty scene, and add an empty GameObject to it with following script attached.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> UnityEngine<span class="pl-k">;</span>
+<span class="pl-k">using</span> UCompile<span class="pl-k">;</span>
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CompileCodeExample</span> : <span class="pl-k">MonoBehaviour</span> 
+{
+
+    <span class="pl-c">// Update is called once per frame</span>
+    <span class="pl-k">void</span> <span class="pl-en">Update</span> ()
+    {
+
+        <span class="pl-k">if</span>(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+            engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+            IScript result = engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>GameObject.CreatePrimitive(PrimitiveType.Cube);<span class="pl-pds">"</span></span>);
+            result.Execute();
+        }
+
+     }
+}</pre></div>
+
+<p>On space press, we create new instance of the main class you need to worry about in UCompile, CSScriptEngine. Then, via AddUsings method, we, sort of, add using directive to the code, that we are going to compile. So UnityEngine namespace classes are now available for it to use. After that, we invoke CompileCode method of CSScriptEngine, passing string with code as a parameter, and we save the resulting IScript type. Behind the scenes, string with methodless code will be wrapped in a method called Execute and a class, and this class implements IScript interface. After compilation, instance of this class is returned by CompileCode as IScript object. Then you can invoke this objects Execute method, to execute code, you've just compiled. This is the "Main()" method we discussed earlier.</p>
+
+<p>So basically what happens here - your code gets wrapped in a method and a class, then this class is compiled and instance of this placeholder class is returned by CompileCode as interface object. Then method containing our code, called Execute, is invoked, and thats how our code gets executed. Try it, and you'll see a cube appear! </p>
+
+<p>This way you can interact with your Unity scene via code while it's running. If you want some kind of REPL console functionality in your scene, and you don't need to dynamically add more functionality, by compiling classes, that's could be all you need from UCompile. But we can do more.</p>
+
+<p><a id="user-content-Class compilation"></a><strong>2. Class compilation</strong></p>
+
+<p>What if we want not only to create cube in our scene, but also make it change color on button press? So lets say code of this changing color MonoBehaviour goes like this:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">ColourChanger</span> : <span class="pl-k">MonoBehaviour</span>
+{
+    <span class="pl-k">void</span> <span class="pl-en">Update</span>()
+    {
+        <span class="pl-k">if</span> (Input.GetKeyDown(KeyCode.C))
+        {
+            <span class="pl-c1">this</span>.gameObject.GetComponent&lt;MeshRenderer&gt;().material.color = <span class="pl-k">new</span> Color(Random.<span class="pl-k">value</span>, Random.<span class="pl-k">value</span>, Random.<span class="pl-k">value</span>);
+        }
+    }
+}</pre></div>
+
+<p>Of course we can write changing color MonoBehaviour and compile it with the rest of scripts at compilation time of our Unity application, then create cube and attach this MonoBehaviour to it, using CompileCode method as we described above. Code of MonoBehaviour doing that would look like this:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> UnityEngine<span class="pl-k">;</span>
+<span class="pl-k">using</span> UCompile<span class="pl-k">;</span>
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CompileClassExample</span> : <span class="pl-k">MonoBehaviour</span> 
+{
+
+    <span class="pl-c">// Update is called once per frame</span>
+    <span class="pl-k">void</span> <span class="pl-en">Update</span> ()
+    {
+
+        <span class="pl-k">if</span>(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+            engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+            IScript result = engine.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                   GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);</span>
+<span class="pl-s">                                   cube.AddComponent&lt;ColourChanger&gt;();</span>
+<span class="pl-s">                                <span class="pl-pds">"</span></span>);
+            result.Execute();
+        }
+
+     }
+}</pre></div>
+
+<p>But what if we want to create this ColorChanger MonoBehaviour dynamically at runtime? With some slight modifications of above code, we can do that!</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> UnityEngine<span class="pl-k">;</span>
+<span class="pl-k">using</span> UCompile<span class="pl-k">;</span>
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">NewBehaviourScript</span> : <span class="pl-k">MonoBehaviour</span> {
+
+    <span class="pl-c">// Update is called once per frame</span>
+    <span class="pl-k">void</span> <span class="pl-en">Update</span> ()
+    {
+
+        <span class="pl-k">if</span>(Input.GetKeyDown(KeyCode.Space))
+        {
+            CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+            engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+            <span class="pl-k">string</span> typeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class ColourChanger : MonoBehaviour</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    void Update()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        if (Input.GetKeyDown(KeyCode.C))</span>
+<span class="pl-s">                                        {</span>
+<span class="pl-s">                                            this.gameObject.GetComponent&lt;MeshRenderer&gt;().material.color = new Color(Random.value, Random.value, Random.value);</span>
+<span class="pl-s">                                        }</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+            engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>ColorChanger<span class="pl-pds">"</span></span>, typeCode);
+
+            IScript result = engine.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);</span>
+<span class="pl-s">                                                 cube.AddComponent&lt;ColourChanger&gt;();</span>
+<span class="pl-s">                                               <span class="pl-pds">"</span></span>);
+            result.Execute();
+        }
+
+    }
+}</pre></div>
+
+<p>Here we save our ColorChanger MonoBehaviour code in typeCode variable, then we pass it to CompileType(string typeID, string code) method, with "ColorChanger" as typeID. CompileType method associates "ColorChanger" string ID with typeCode, so whenever you want to change it, you need to call CompileType with the same ID you initially compiled it and your new typeCode. So every type you compile should have its unique ID, otherwise it will be treated as already existing type, and calling CompileType with typeID of this type will result into its typeCode changed to the one you passed. </p>
+
+<p>So this CompileType call sort of adds this type to the system, and from now on, code passed to CompilCode or CompileType methods will have access to this type and can perform operations on it. You can see, that now, after we compiled this type and "added it to the system", using our old friend CompileCode method we can do whatever we want with it, for example attaching it to our cube GameObject! Try it, and you'll have a cube in your scene changing color every time you press C.</p>
+
+<p>Be aware, that every time you change typeCode of already existing type, previous version of this type is discarded, and only the last compiled version will be available to use for the code passed to CompileCode and CompileType methods. </p>
+
+<p><strong>Summing it up in few words:</strong> you can compile methodless code with CompileCode method, and compile classes with CompileType method. You can control what this code can access by adding using derictives via AddUsings method. All classes you compiled with CompileType will be accessible constantly.</p>
+
+<h2>
+<a id="user-content-ucompile-structure" class="anchor" href="http://localhost:6419/#ucompile-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>UCompile structure</h2>
+
+<p><a href="./README.md - Grip_files/UcompileStructureScheme.png" target="_blank"><img src="./README.md - Grip_files/UcompileStructureScheme.png" alt="ucompile structure scheme" width="700px" height="162px" style="max-width:100%;"></a></p>
+
+<p>Here I'll give you a brief overview of the system structure, for more details you can dig into the code, there's not much and it's all heavily commented.</p>
+
+<p>3 main building blocks of UCompile are: MonoEvaluator.cs, CSScriptEngine.cs and CSScriptengineRemote.cs.</p>
+
+<h3>
+<a id="user-content-module-monoevaluatorcs" class="anchor" href="http://localhost:6419/#module-monoevaluatorcs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Module MonoEvaluator.cs</h3>
+
+<p>MonoEvaluator is the main class of this module, it's job is to encapsulate instance of Mono.Csharp.Evaluator(the chosen way to dynamically compile code in UCompile), feed code strings to it with method CompileCode, handle compilation errors and warnings, save them in special container-class CompilerOutput. If errors occured during compilation, MonoEvaluator will throw a custom exception CompilerException, with information about all errors and warnings. Also MonoEvaluator contains property CompilationOutput, allowing you to get information about last compilation regardless of if it failed or not. </p>
+
+<p>Method ReferenceAssemblies of class MonoEvaluator "binds" assemblies to Mono.Csharp.Evaluator instance under the hood of MonoEvaluator, which allows it to expose these assemblies functionality to code that is to be compiled by Mono.Csharp.Evaluator. You still need to include using directives in your code though, but that's where using directives control system comes into play of CSScriptEngine class, which we will discuss later.</p>
+
+<h3>
+<a id="user-content-module-csscriptenginecs" class="anchor" href="http://localhost:6419/#module-csscriptenginecs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Module CSScriptEngine.cs</h3>
+
+<p>This module contains class CSScriptEngine, the main class of the whole UCompile system. It uses wrapped MonoEvaluator class instance to perform compilation. You're supposed to interact with this class first and foremost. Some of its methods:</p>
+
+<p><strong>1. public IScript CompileCode(string code = "")</strong></p>
+
+<p>This method compiles methodless code, and returns IScript object. You can execute your methodless code by invoking Execute method of IScript object. Returns null, if compilation failed. For examples see  <a href="http://localhost:6419/#Methodless%20compilation">Methodless code compilation and execution</a> in <a href="http://localhost:6419/#How%20it%20works">How it works</a> chapter.</p>
+
+<p><strong>2. public Type CompileType(string typeID, string code)</strong></p>
+
+<p>This method compiles class code(that is string with code describing class) saving reference to it by using user provided typeID. Once you compiled a type, it's now in system, and if you want to change its code - use CompileType with the same typeID you initially provided for this type, and your new type code. Now, when you use this class in your dynamic code only the last compiled version will be used. Examples: <a href="http://localhost:6419/#Class%20compilation">Class compilation</a>.</p>
+
+<p><strong>3. public void RemoveTypes(params string[] typeIDs)</strong></p>
+
+<p>Removes type from the system given its typeID. After that you can't use this type in your dynamic code.</p>
+
+<p><strong>4. public IEnumerable CompileCoroutine(string coroutineCode = "")</strong></p>
+
+<p>Did I mention, we also can compile coroutines? ;-) Same principles as with CompileCode apply, with few additions. Apart from that you need to place yield return somewhere in your coroutine code, this method returns IEnumerable object. Returning this instead of IEnumerator allows us to "rewind" coroutine every time we invoke GetEnumerator on IEnumerable object, what is pretty handy. You can look at some usage examples in <a href="http://localhost:6419/#cheatsheet">Cheat sheet</a>.</p>
+
+<p><strong>5. public void AddOnCompilationSucceededHandler(Action onCompilationSucceededHandler)</strong></p>
+
+<p>This method as well as its relatives with similar signature, allows you to, roughly speaking, "subscribe" and "unsubscribe" "event handlers" to the compilation succeded and compilation failed "events". Depending on whether last compilation succeded or failed, CSScriptEngine will execute related delegate, passing CompilerOutput instance with information about warnings and errors. You can subscribe to this delegate with your Action method, to do whatever you want. Fo example, you can transmit errors and warnings to some kind of output window. See examples <a href="http://localhost:6419/#cheatsheet">here</a>.</p>
+
+<p><strong>6. public void AddUsings(string usings)</strong></p>
+
+<p>This method allows you to add one or multiple using directives to system, once added these usings apply to all your dynamic code, until you remove them. Thats how you control what is visible and accessible to dynamic code. Also it automatically references assemblies related to usings. Beware, throws exceptions! If you're not sure about input, probably want to handle them.</p>
+
+<p><strong>7. public void RemoveUsings(string usings)</strong></p>
+
+<p>Removes usings from system. Throws exceptions as well!</p>
+
+<p><strong>8. public void Reset()</strong></p>
+
+<p>Removes all usings and all references to previously compiled types from CSScriptEngine.</p>
+
+<h3>
+<a id="user-content-module-csscriptengineremotecs" class="anchor" href="http://localhost:6419/#module-csscriptengineremotecs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Module CSScriptEngineRemote.cs</h3>
+
+<p>Every time you compile code using CSScriptEngine, assembly is created and loaded to current AppDomain. Problem is, you can't unload this assembly, without unloading whole AppDomain. So, if you have an infinite amount of code to compile, you'll need to unload your  AppDomain at some point to free memory occupied with unused assemblies. In order to provide option to avoid this limitation, CSScriptEngineRemote.cs module was created. CSScriptEngineRemote is the main class of this module, what it does is it creates another separate AppDomain and loads CSScriptEngine instance to it, then sends signals to it to perform operations we're already familiar with. This way, code compilation and, therefore, assembly creation and loading occurs in separate AppDomain. Which at any point we can unload with all dynamic assemblies, and free memory, without unloading our main AppDomain. CSScriptEngineRemote is designed to work similar to CSScriptEngine, but it has some nuances.</p>
+
+<p><strong>1. public void LoadDomain(string name = "")</strong></p>
+
+<p>Creates new AppDomain inside Unity application. That's where our remote CSScriptEngine instance will go. You need to call LoadDomain before calling any other method in CSScriptEngineRemote.</p>
+
+<p><strong>2. public void UnloadDomain()</strong></p>
+
+<p>Unloads remote AppDomain. CSScriptEngineRemote implements IDisposable interface, and this method will be called in Dispose() 
+automatically, if you didn't call it before manually. Be aware, you can't leave remote AppDomain hanging when you're done working with CSSCriptEngineRemote, you have to call UnloadDomain or Dispose if you called LoadDomain previously.</p>
+
+<p><strong>3. public void CompileCode(string code)</strong></p>
+
+<p>As you can see, here CompileCode doesn't return IScript object, but rather saves it internally. Other than that, it works in a similar manner with CSScriptEngine. </p>
+
+<p><strong>4. public void ExecuteLastCompiledCode()</strong></p>
+
+<p>This method calls Execute function of last compiled, saved internally, IScript object. If with CSScriptEngine we get to do it manually, here this function does it for us.</p>
+
+<p><strong>5. public void CompileType(string id, string code)</strong></p>
+
+<p>CompileType also now doesn't return Type object. And it can't compile MonoBehaviours, oh by the way, never compile MonoBehaviours with CSScriptEngineRemote.CompileType(), it may appear to work fine at first, but will inevitably lead to strange behaviours, bugs and crashes. Plain C# classes work fine.</p>
+
+<p>Other methods work pretty similar to CSScriptEngine. So, your best bet with CSScriptEngineRemote is to compile plain C# classes and methodless code, you can't compile coroutines, every dynamically created with code in CSScriptEngineRemote GameObject must be destroyed before unloading AppDomain. Moreover messing with AppDomains in Unity can sometimes lead to a bunch of strange and unexpected bugs, so be aware before using CSScriptEngineRemote. That's the price you pay for ability to free memory from dynamic assemblies at any time during runtime. </p>
+
+<p>Examples: <a href="http://localhost:6419/#cheatsheet">Cheat sheet</a>.</p>
+
+<h2>
+<a id="user-content-example-project" class="anchor" href="http://localhost:6419/#example-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a id="user-content-example project"></a>Example project</h2>
+
+<p>It may not look like that at first glance, but UCompile project is all about having fun! Lets have some fun then, finally!</p>
+
+<p>In UCompile/Assets/ExampleProject folder resides a Unity project I've made specifically to demonstrate usage of UCompile and test its features. Fire up its Main scene in Scenes folder, and you'll see a pretty rough, but, neverthrless, usable GUI. Be aware, that it can fall apart if you use unconventional screen resolutions, or screen scales. I'd recommend using 1920 X 1080 and 100% scale. And you need to add "DynamicObject" tag to your tags, in order for ExampleCode.txt examples to work properly.</p>
+
+<p><a href="./README.md - Grip_files/ExampleProjectGUI.png" target="_blank"><img src="./README.md - Grip_files/ExampleProjectGUI.png" alt="exampleprojectgui" style="max-width:100%;"></a></p>
+
+<p>So, what's it all about in few words? Basically, it's a GUI bridge between you and CSScriptEngine/CSScriptEngineRemote classes. By the way, "using UnityEngine" is automatically added to this classes, as well as custom namespace WhitelistAPI at Assets/ExampleProject/Scripts/WhitelistAPI folder. WhitleistAPI namespace consists of various methods and classes to play with, using dynamic compilation. I think, the best way to understand how everything works is to watch a video, so you can do it right now (<a href="https://www.youtube.com/watch?v=Iipsxbe17B8">https://www.youtube.com/watch?v=Iipsxbe17B8</a>), and then, if something is unclear, look at GUI reference below.</p>
+
+<p><strong>1. All dynamic types compiled button</strong> </p>
+
+<p>Pressing this button unfolds a drop-down list with buttons, each representing a type that you compiled in "Type compilation window" (4).
+Pressing this "type" button allows you to edit types code, or delete it from system.</p>
+
+<p><strong>2. Add new type button</strong></p>
+
+<p>Makes "Type compilation window"(4) appear. </p>
+
+<p><strong>3. Delete all dynamic objects button</strong></p>
+
+<p>Simply deletes every GameObject with "DynamicObject" tag in the scene.</p>
+
+<p><strong>4. Type compilation window</strong></p>
+
+<p>Basically uses CSScriptEngine/CsscriptEnginRemotes CompileType method in the background, feeding to it TypeID from "Enter TypeID" input field, and code from "Enter Type definition..." input field. Every time compilation succeeds, new "type" button is added to "All types"(1) dropdown list. </p>
+
+<p><strong>5. Code compilation window</strong></p>
+
+<p>This window uses CompileCode and CompileCoroutine methods in the background. "Remote" toggle allows you to swap between CSScriptEngine and CSScriptEgnineRemote, so, if you turn it on, "Compile", "Execute" and "Compile and Add type" buttons will send signals to CSScriptEngineRemote instead of CSScriptEngine, and vice versa. Also it immediately invokes LoadDomain method of CSScriptEngineRemote when you turn it on, and unloads it when you turn it off.</p>
+
+<p>"Animation" and "Code" toggles determine, whether CompileCode or CompileCoroutine will be used when you press "Compile" button, and send your code in input field to CSScriptEngine/CSScriptEngineRemote. Be aware, that if you use "Animation" toggle with "Remote" toggle on, CompileCode still going to be used in the background, don't try to compile coroutine with CSScriptengineRemote.</p>
+
+<p>Assets/ExampleProject/ExampleCode.txt file contains code examples, with which you can play in Main scene.</p>
+
+<h2>
+<a id="user-content-cheat-sheet" class="anchor" href="http://localhost:6419/#cheat-sheet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a id="user-content-cheatsheet"></a>Cheat sheet</h2>
+
+<p>Here I'll give you examples of how you can use UCompile. This cheat sheet is also located in Ucompile/Assets/ExampleProject/CheatSheet as MonoBehaviour script, which you can test in scene, also located in the same folder.</p>
+
+<p><strong>CSScriptEngine usage examples</strong></p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Compile simple methodless code</span>
+    <span class="pl-k">void</span> CompileCode()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        IScript result = engine.CompileCode(<span class="pl-s"><span class="pl-pds">@"Debug.Log(""Hey!"");"</span></span>);
+
+        result.Execute();
+
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Compile custom type, and then invoke it's method via CompileCode</span>
+    <span class="pl-k">void</span> CompileType()
+    {
+
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        <span class="pl-k">string</span> typeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class SimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void PrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Hey!<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>SimpleType<span class="pl-pds">"</span></span>, typeCode);
+
+        IScript result = engine.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                                 SimpleType sm = new SimpleType();sm.PrintHey();</span>
+<span class="pl-s">                                               <span class="pl-pds">"</span></span>);
+
+        result.Execute();
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Compile custom type, and then compile another type, using previously compiled type in its code, and then</span>
+    <span class="pl-c">//execute last compiled types method via CompileCode</span>
+    <span class="pl-k">void</span> CompileMultipleTypes()
+    {
+
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        <span class="pl-k">string</span> typeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class SimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void PrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Hey!<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>SimpleType<span class="pl-pds">"</span></span>, typeCode);
+
+        <span class="pl-k">string</span> anotherTypeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class AnotherSimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void InvokeSimpleTypesPrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Greetings from AnotherSimpleType! Invoking SimpleTypes PrintHey method...<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                        SimpleType sm = new SimpleType(); sm.PrintHey();</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>AnotherSimpleType<span class="pl-pds">"</span></span>, anotherTypeCode);
+
+        IScript result = engine.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                                 AnotherSimpleType sm = new AnotherSimpleType();sm.InvokeSimpleTypesPrintHey();</span>
+<span class="pl-s">                                               <span class="pl-pds">"</span></span>);
+
+        result.Execute();
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Here we determine which method is going to automatically be invoked when compilation ends with errors</span>
+    <span class="pl-k">void</span> AddCompilationFailedHandler()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddOnCompilationFailedHandler(OnCompilationFailedAction);
+
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>This will result in error<span class="pl-pds">"</span></span>);
+
+        engine.RemoveOnCompilationFailedHandler(OnCompilationFailedAction);
+    }
+
+    <span class="pl-c">//Method of type Action&lt;CompilerOutput&gt; that will be executed on failed compilation(with errors)</span>
+    <span class="pl-c">//Outputs errors occured during compilation to editor console</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> OnCompilationFailedAction(CompilerOutput output)
+    {
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; output.Errors.Count; i++)
+            Debug.LogError(output.Errors[i]);
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; output.Warnings.Count; i++)
+            Debug.LogWarning(output.Warnings[i]);
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Here we determine which method is going to automatically be invoked when compilation ends without errors</span>
+    <span class="pl-k">void</span> AddCompilationSucceededHandler()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddOnCompilationSucceededHandler(OnCompilationSucceededAction);
+
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>string warningCauser = <span class="pl-cce">\"</span>This will result in warning, but compillation succeeds<span class="pl-cce">\"</span>;<span class="pl-pds">"</span></span>);
+
+        engine.RemoveOnCompilationSucceededHandler(OnCompilationSucceededAction);
+    }
+
+    <span class="pl-c">//Method of type Action&lt;CompilerOutput&gt; that will be executed on succesfull compilation(without errors)</span>
+    <span class="pl-c">//Outputs warnings occured during compilation to editor console</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> OnCompilationSucceededAction(CompilerOutput output)
+    {
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; output.Warnings.Count; i++)
+            Debug.LogWarning(output.Warnings[i]);
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Remove compiled type from system, now this type is inaccessible to dynamic code</span>
+    <span class="pl-k">void</span> RemoveType()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        engine.AddOnCompilationFailedHandler(OnCompilationFailedAction);
+
+        <span class="pl-k">string</span> typeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class SimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void PrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Hey!<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>SimpleType<span class="pl-pds">"</span></span>, typeCode);
+
+        <span class="pl-k">string</span> anotherTypeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class AnotherSimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void InvokeSimpleTypesPrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Greetings from AnotherSimpleType! Invoking SimpleTypes PrintHey method...<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                        SimpleType sm = new SimpleType(); sm.PrintHey();</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engine.CompileType(<span class="pl-s"><span class="pl-pds">"</span>AnotherSimpleType<span class="pl-pds">"</span></span>, anotherTypeCode);
+
+        engine.RemoveTypes(<span class="pl-s"><span class="pl-pds">"</span>AnotherSimpleType<span class="pl-pds">"</span></span>);
+
+        <span class="pl-c">//This will cause a compilation error, beacause we removed AnotherSimpleType </span>
+        IScript result = engine.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                                 AnotherSimpleType sm = new AnotherSimpleType(); </span>
+<span class="pl-s">                                               <span class="pl-pds">"</span></span>);
+
+        engine.RemoveOnCompilationFailedHandler(OnCompilationFailedAction);
+
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//add using directives to CSScriptEngine, to control what is exposed to dynamic code</span>
+    <span class="pl-k">void</span> AddUsings()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddOnCompilationFailedHandler(OnCompilationFailedAction);
+
+        <span class="pl-c">//There's no usings right now in system, so nothing, apart from basic types is accesible to dynamic code</span>
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>Debug.Log(<span class="pl-cce">\"</span>This will result in an error, because Debug is a part of UnityEngine namespace<span class="pl-cce">\"</span>);<span class="pl-pds">"</span></span>);
+
+        <span class="pl-c">//Here we add using UnityEngine to system, so everything in this namespace is accessible now</span>
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>Debug.Log(<span class="pl-cce">\"</span>Now compilation of this code will succeed<span class="pl-cce">\"</span>);<span class="pl-pds">"</span></span>).Execute();
+
+        engine.RemoveOnCompilationFailedHandler(OnCompilationFailedAction);
+
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Add using of custom namespace, this way you can restrict access of resources to only your custom namespace</span>
+    <span class="pl-k">void</span> AddCustomNamespaceUsings()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        <span class="pl-c">//Here we add using UnityEngine to system, so everything in this namespace is accessible now</span>
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using SomeCustomNamespace;<span class="pl-pds">"</span></span>);
+
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>HeyPrinter hp = new HeyPrinter(); hp.PrintHey();<span class="pl-pds">"</span></span>).Execute();
+
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Removes usings from system, so it's namespace resources become inaccessible for dynamic code</span>
+    <span class="pl-k">void</span> RemoveUsings()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddOnCompilationFailedHandler(OnCompilationFailedAction);
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using SomeCustomNamespace;<span class="pl-pds">"</span></span>);
+
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>HeyPrinter hp = new HeyPrinter(); hp.PrintHey();<span class="pl-pds">"</span></span>).Execute();
+
+        engine.RemoveUsings(<span class="pl-s"><span class="pl-pds">"</span>using SomeCustomNamespace;<span class="pl-pds">"</span></span>);
+
+        <span class="pl-c">//Now this will result in error</span>
+        engine.CompileCode(<span class="pl-s"><span class="pl-pds">"</span>HeyPrinter hp = new HeyPrinter(); hp.PrintHey();<span class="pl-pds">"</span></span>);
+
+        engine.RemoveOnCompilationFailedHandler(OnCompilationFailedAction);
+
+    }
+
+    <span class="pl-c">//-------------------------------------------------------------------------------------------------</span>
+
+    <span class="pl-c">//Coroutine compilation is similar to methodless code compilation, but with some nuances.</span>
+    <span class="pl-k">void</span> CompileCoroutine()
+    {
+        CSScriptEngine engine = <span class="pl-k">new</span> CSScriptEngine();
+
+        engine.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        <span class="pl-c">//CompileCoroutine returns IEnumerable object, so you need to use GetEnumerator on it in order to</span>
+        <span class="pl-c">//be able to pass it to StartCoroutine</span>
+        IEnumerator coroutine = engine.CompileCoroutine(<span class="pl-s"><span class="pl-pds">@"yield return new WaitForSeconds(1f);Debug.Log(""Hey!"");"</span></span>).GetEnumerator();
+
+        StartCoroutine(coroutine);
+
+    }</pre></div>
+
+<p><strong>CSScriptEngineRemote usage examples</strong></p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-c">//With CSScriptEngineRemote you must always invoke LoadDomain before using it, </span>
+    <span class="pl-c">//and always invoke Unloaddomain or Dispose when you're done using it</span>
+    <span class="pl-k">void</span> RemoteCompileCode()
+    {
+        <span class="pl-c">//Let's check that no dynamic assemblies were loaded in main appDomain</span>
+        Debug.Log(<span class="pl-s"><span class="pl-pds">"</span>Assemblies currently loaded in main appdomain: <span class="pl-pds">"</span></span> + AppDomain.CurrentDomain.GetAssemblies().Length);
+
+        <span class="pl-c">//You can ensure dispose call by utilizing using block, for example</span>
+        <span class="pl-k">using</span> (CSScriptEngineRemote engineRemote = <span class="pl-k">new</span> CSScriptEngineRemote())
+        {
+            engineRemote.LoadDomain();
+
+            engineRemote.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+            engineRemote.CompileCode(<span class="pl-s"><span class="pl-pds">@"Debug.Log(""Hey!"");"</span></span>);
+
+            engineRemote.ExecuteLastCompiledCode();
+        }
+
+        Debug.Log(<span class="pl-s"><span class="pl-pds">"</span>Assemblies currently loaded in main appdomain: <span class="pl-pds">"</span></span> + AppDomain.CurrentDomain.GetAssemblies().Length);
+    }
+
+    <span class="pl-c">//Remember, you can't compile MonoBehaviours with CSSCriptEngineRemote, stick to</span>
+    <span class="pl-c">//plain C# classes for safety</span>
+    <span class="pl-k">void</span> RemoteCompileType()
+    {
+
+        CSScriptEngineRemote engineRemote = <span class="pl-k">new</span> CSScriptEngineRemote();
+
+        engineRemote.LoadDomain();<span class="pl-c">//Important!</span>
+
+        engineRemote.AddUsings(<span class="pl-s"><span class="pl-pds">"</span>using UnityEngine;<span class="pl-pds">"</span></span>);
+
+        <span class="pl-k">string</span> typeCode = @<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">                                public class SimpleType</span>
+<span class="pl-s">                                {</span>
+<span class="pl-s">                                    public void PrintHey()</span>
+<span class="pl-s">                                    {</span>
+<span class="pl-s">                                        Debug.Log(<span class="pl-pds">"</span><span class="pl-pds">"</span>Hey!<span class="pl-pds">"</span><span class="pl-pds">"</span>);</span>
+<span class="pl-s">                                    }</span>
+<span class="pl-s">                                }</span>
+<span class="pl-s"></span>
+<span class="pl-s">                              <span class="pl-pds">"</span></span>;
+
+        engineRemote.CompileType(<span class="pl-s"><span class="pl-pds">"</span>SimpleType<span class="pl-pds">"</span></span>, typeCode);
+
+        engineRemote.CompileCode(@<span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">                                    SimpleType sm = new SimpleType();sm.PrintHey();</span>
+<span class="pl-s">                                <span class="pl-pds">"</span></span>);
+
+        engineRemote.ExecuteLastCompiledCode();
+
+        engineRemote.UnloadDomain();<span class="pl-c">//Important!</span>
+    }</pre></div>
+
+<h2>
+<a id="user-content-license" class="anchor" href="http://localhost:6419/#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://localhost:6419/Assets/LICENSE.txt">License</a></p>
+
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+
+  </div>
+  <div>&nbsp;</div>
+  </div><script>
+    function showCanonicalImages() {
+      var images = document.getElementsByTagName('img');
+      if (!images) {
+        return;
+      }
+      for (var index = 0; index < images.length; index++) {
+        var image = images[index];
+        if (image.getAttribute('data-canonical-src') && image.src !== image.getAttribute('data-canonical-src')) {
+          image.src = image.getAttribute('data-canonical-src');
+        }
+      }
+    }
+
+    function scrollToHash() {
+      if (location.hash && !document.querySelector(':target')) {
+        var element = document.getElementById('user-content-' + location.hash.slice(1));
+        if (element) {
+           element.scrollIntoView();
+        }
+      }
+    }
+
+    function autorefreshContent(eventSourceUrl) {
+      var initialTitle = document.title;
+      var contentElement = document.getElementById('grip-content');
+      var source = new EventSource(eventSourceUrl);
+      var isRendering = false;
+
+      source.onmessage = function(ev) {
+        var msg = JSON.parse(ev.data);
+        if (msg.updating) {
+          isRendering = true;
+          document.title = '(Rendering) ' + document.title;
+        } else {
+          isRendering = false;
+          document.title = initialTitle;
+          contentElement.innerHTML = msg.content;
+          showCanonicalImages();
+        }
+      }
+
+      source.onerror = function(e) {
+        if (e.readyState === EventSource.CLOSED && isRendering) {
+          isRendering = false;
+          document.title = initialTitle;
+        }
+      }
+    }
+
+    window.onhashchange = function() {
+      scrollToHash();
+    }
+
+    window.onload = function() {
+      scrollToHash();
+    }
+
+    showCanonicalImages();
+
+    var autorefreshUrl = document.getElementById('preview-page').getAttribute('data-autorefresh-url');
+    if (autorefreshUrl) {
+      autorefreshContent(autorefreshUrl);
+    }
+  </script>
+
+</body></html>
