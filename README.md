@@ -24,6 +24,8 @@ If you have found a bug, create an issue on the [github page](https://github.com
 
 ##Installation
 
+For quick step by step instruction see https://www.youtube.com/watch?v=YIMmFZ4Mq6w.
+
 First of all, you need to change some build settings, otherwise you'll get unhandled exception on import. Go File -> Build Settings -> Player Settings -> Other Settings -> Optimization -> Api Compatibility Level, set it to .Net 2.0. Now you're all set to install UCompile.
 
 1. [Releases page](https://github.com/SoapCode/UCompile/releases).
